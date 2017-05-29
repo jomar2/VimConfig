@@ -48,6 +48,8 @@
       inhibit-startup-echo-area-message t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(global-auto-revert-mode t)
+(desktop-save-mode 1)
 (when (boundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 (show-paren-mode 1)
@@ -308,7 +310,7 @@ condition where the bell visualization never clears.")
                (wgrep-ag-setup)
                (define-key ag-mode-map (kbd "n") 'evil-search-next)
                (define-key ag-mode-map (kbd "N") 'evil-search-previous)))
-   (setq ag-executable "c:/Program Files/emacs/bin/ag.exe")
+   (setq ag-executable "c:/Program Files (x86)/emacs/bin/ag.exe")
    (setq ag-highlight-search t)
    (setq ag-reuse-buffers t)
    (setq ag-reuse-window t))
@@ -791,6 +793,9 @@ condition where the bell visualization never clears.")
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+
+(use-package cc-mode
+  :ensure t)
 
 ;(use-package mount-cygwin
 ;  :ensure t
