@@ -166,10 +166,10 @@ condition where the bell visualization never clears.")
 ;;; Larger package-specific configurations.
 (require 'diminish)
 (require 'init-fonts)
-(require 'init-gtags)
+;(require 'init-gtags)
 (require 'init-evil)
 ;(require 'init-twitter)
-;(require 'init-maps)
+(require 'init-maps)
 ;(require 'init-w3m)
 ;(require 'init-php)
 ;(require 'init-flycheck)
@@ -208,10 +208,10 @@ condition where the bell visualization never clears.")
 (use-package all-the-icons-dired
   :ensure t)
 
-;; (use-package helm-make
-;;   :ensure t
-;;   :config
-;;   (global-set-key (kbd "C-c m") 'helm-make-projectile))
+;;  (use-package helm-make
+;;    :ensure t
+;;    :config
+;;    (global-set-key (kbd "C-c m") 'helm-make-projectile))
 
 ;; (use-package dired
 ;;   :config
@@ -310,7 +310,7 @@ condition where the bell visualization never clears.")
                (wgrep-ag-setup)
                (define-key ag-mode-map (kbd "n") 'evil-search-next)
                (define-key ag-mode-map (kbd "N") 'evil-search-previous)))
-   (setq ag-executable "c:/Program Files (x86)/emacs/bin/ag.exe")
+   (setq ag-executable "c:/Program Files/emacs/bin/ag.exe")
    (setq ag-highlight-search t)
    (setq ag-reuse-buffers t)
    (setq ag-reuse-window t))
@@ -333,6 +333,7 @@ condition where the bell visualization never clears.")
    :config
    (helm-mode 1)
    (setq helm-buffers-fuzzy-matching t)
+;   (setq helm-locate-fuzzy-match t)
    (setq helm-autoresize-mode t)
    (setq helm-buffer-max-length 40)
    (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
@@ -485,6 +486,7 @@ condition where the bell visualization never clears.")
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t)
+  (setq projectile-indexing-method 'alien)
   (setq projectile-switch-project-action 'neotree-projectile-action))
 
 (use-package highlight-symbol
@@ -493,7 +495,9 @@ condition where the bell visualization never clears.")
   :diminish ""
   :config
   (setq-default highlight-symbol-idle-delay 1.5))
-;
+
+(setq find-program "C:\\\"Program Files\"\\emacs\\bin\\find.exe")
+
 ;(use-package magit
 ;  :ensure t
 ;  :defer t
@@ -549,9 +553,9 @@ condition where the bell visualization never clears.")
 ;            (evil-define-key 'normal flycheck-mode-map (kbd "[e") 'flycheck-previous-error)))
 ;
 ;;;; Lisp interaction mode & Emacs Lisp mode:
-;(add-hook 'lisp-interaction-mode-hook
-;          (lambda ()
-;            (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)))
+(add-hook 'lisp-interaction-mode-hook
+          (lambda ()
+            (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 ;
 ;;;; All programming modes
 (defun air--set-up-prog-mode ()
@@ -748,25 +752,66 @@ condition where the bell visualization never clears.")
 
 (load-theme 'gruvbox)
 
+;(use-package airline-themes
+;  :ensure t)
+
 (use-package powerline
-  :ensure t)
-
-(use-package smart-mode-line-powerline-theme
-  :ensure t)
-
-(use-package smart-mode-line
   :ensure t
+  :config)
+ ; (require 'spaceline-config)
+;  (spaceline-spacemacs-theme))
+
+;(use-package smart-mode-line-powerline-theme
+;  :ensure ti)
+
+(use-package nyan-mode
+  :ensure t
+  :config)
+
+(use-package spaceline
+  :ensure t
+  :init
+  (setq powerline-height 24)
+  (setq-default powerline-default-separator 'roundstub)
+  ;; (setq spaceline-evil-insert "SteelBlue")
+  ;; (setq  powerline-default-separator 'rounded)
+  ;; (setq spaceline-separator-dir-left '(right . right)
+  ;; (setq   spaceline-separator-dir-right '(left . left))
+
   :config
-  (require 'powerline)
-  (setq powerline-default-separator 'chamfer)
-  (setq sml/theme 'powerline)
-  (sml/setup)
-  ;; These colors are more pleasing (for gruvbox)
-  (custom-theme-set-faces
-   'user
-   '(powerline-evil-normal-face ((t (:inherit powerline-evil-base-face :background "chartreuse3"))))
-   '(sml/folder ((t (:inherit sml/global :background "grey22" :foreground "grey50" :weight normal))) t)
-   '(sml/git ((t (:background "grey22" :foreground "chartreuse3"))) t)))
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+  (spaceline-info-mode)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (nyan-mode t)
+  (setq nyan-animate-nyancat nil)
+  (setq nyan-wavy-trail t)
+  (spaceline-helm-mode))
+
+;(use-package smart-mode-line
+;  :ensure t
+;  :config
+;  (require 'powerline)
+;  (require 'nyan-mode)
+;  (setq powerline-default-separator 'chamfer)
+;  (setq sml/theme 'powerline)
+;  (sml/setup)
+;  (nyan-mode t)
+;  (setq nyan-animate-nyancat nil)
+;  (setq nyan-wavy-trail t)
+;  ;; These colors are more pleasing (for gruvbox)
+;  (custom-theme-set-faces
+;   'user
+;   '(powerline-evil-normal-face ((t (:inherit powerline-evil-base-face :background "chartreuse3"))))
+;   '(powerline-evil-insert-face ((t (:inherit powerline-evil-base-face :background "red50"))))
+;   '(sml/folder ((t (:inherit sml/global :background "grey22" :foreground "grey50" :weight normal))) t)
+;   '(sml/git ((t (:background "grey22" :foreground "chartreuse3"))) t)))
+
+(setq evil-normal-state-tag " NORMAL ")
+(setq evil-insert-state-tag " INSERT ")
+(setq evil-visual-state-tag " VISUAL ")
+(setq evil-replace-state-tag " REPLACE ")
+
 
 ;(setq server-socket-dir (expand-file-name "server" user-emacs-directory))
 ;(server-start)
@@ -797,6 +842,8 @@ condition where the bell visualization never clears.")
 (use-package cc-mode
   :ensure t)
 
+(use-package xcscope
+  :ensure t)
 ;(use-package mount-cygwin
 ;  :ensure t
 ;  :config)
@@ -805,5 +852,5 @@ condition where the bell visualization never clears.")
 ;  :ensure t
 ;  :config)
 ;
-;(provide 'init)
+(provide 'init)
 ;;;; init.el ends here
