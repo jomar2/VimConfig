@@ -339,40 +339,40 @@ condition where the bell visualization never clears.")
    (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
    (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
 
-;(use-package company
-;  :ensure t
-;  :defer t
-;  :init
-;  (global-company-mode)
-;  :config
-;
-;  (defun org-keyword-backend (command &optional arg &rest ignored)
-;    "Company backend for org keywords.
-;
-;COMMAND, ARG, IGNORED are the arguments required by the variable
-;`company-backends', which see."
-;    (interactive (list 'interactive))
-;    (cl-case command
-;      (interactive (company-begin-backend 'org-keyword-backend))
-;      (prefix (and (eq major-mode 'org-mode)
-;                   (let ((p (company-grab-line "^#\\+\\(\\w*\\)" 1)))
-;                     (if p (cons p t)))))
-;      (candidates (mapcar #'upcase
-;                          (cl-remove-if-not
-;                           (lambda (c) (string-prefix-p arg c))
-;                           (pcomplete-completions))))
-;      (ignore-case t)
-;      (duplicates t)))
-;  (add-to-list 'company-backends 'org-keyword-backend)
-;
-;  (setq company-idle-delay 0.2)
-;  (setq company-selection-wrap-around t)
-;  (define-key company-active-map (kbd "ESC") 'company-abort)
-;  (define-key company-active-map [tab] 'company-complete-common-or-cycle)
-;  (define-key company-active-map (kbd "C-n") 'company-select-next)
-;  (define-key company-active-map (kbd "C-p") 'company-select-previous))
+(use-package company
+  :ensure t
+  :defer t
+  :init
+  (global-company-mode)
+  :config
 
-;(use-package counsel :ensure t)
+  (defun org-keyword-backend (command &optional arg &rest ignored)
+    "Company backend for org keywords.
+
+COMMAND, ARG, IGNORED are the arguments required by the variable
+`company-backends', which see."
+    (interactive (list 'interactive))
+    (cl-case command
+      (interactive (company-begin-backend 'org-keyword-backend))
+      (prefix (and (eq major-mode 'org-mode)
+                   (let ((p (company-grab-line "^#\\+\\(\\w*\\)" 1)))
+                     (if p (cons p t)))))
+      (candidates (mapcar #'upcase
+                          (cl-remove-if-not
+                           (lambda (c) (string-prefix-p arg c))
+                           (pcomplete-completions))))
+      (ignore-case t)
+      (duplicates t)))
+  (add-to-list 'company-backends 'org-keyword-backend)
+
+  (setq company-idle-delay 0.2)
+  (setq company-selection-wrap-around t)
+  (define-key company-active-map (kbd "ESC") 'company-abort)
+  (define-key company-active-map [tab] 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous))
+
+(use-package counsel :ensure t)
 
 (use-package swiper
   :ensure t
@@ -389,9 +389,9 @@ condition where the bell visualization never clears.")
 ;  :ensure t
 ;  :commands emmet-mode)
 ;
-;(use-package flycheck
-;  :ensure t
-;  :commands flycheck-mode)
+(use-package flycheck
+  :ensure t
+  :commands flycheck-mode)
 ;
 (use-package helm-projectile
   :commands (helm-projectile helm-projectile-switch-project)
@@ -494,9 +494,16 @@ condition where the bell visualization never clears.")
   :defer t
   :diminish ""
   :config
+  (define-key global-map [f5] 'highlight-symbol-at-point)
+  (define-key global-map [f6] 'highlight-symbol-remove-all)
   (setq-default highlight-symbol-idle-delay 1.5))
 
 (setq find-program "C:\\\"Program Files\"\\emacs\\bin\\find.exe")
+
+(use-package evil-visualstar
+  :ensure t
+  :config
+  (global-evil-visualstar-mode))
 
 ;(use-package magit
 ;  :ensure t
@@ -689,12 +696,12 @@ condition where the bell visualization never clears.")
 ;                 (setq emmet-use-css-transform nil)))))
 ;
 ;;;; Emacs Lisp mode:
-;(add-hook 'emacs-lisp-mode-hook
-;          (lambda ()
-;            (yas-minor-mode t)
-;            (eldoc-mode)
-;            (highlight-symbol-mode)
-;            (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (yas-minor-mode t)
+            (eldoc-mode)
+            (highlight-symbol-mode)
+            (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 ;
 ;;;; SH mode:
 ;(add-hook 'sh-mode-hook (lambda ()
@@ -843,8 +850,21 @@ condition where the bell visualization never clears.")
   :ensure t)
 
 (use-package xcscope
-  :ensure t)
-;(use-package mount-cygwin
+  :ensure t
+  :config
+  (define-key global-map [(ctrl f3)] 'cscope-set-initial-directory)
+  (define-key global-map [(ctrl f4)] 'cscope-unset-initial-directory)
+  (define-key global-map [(ctrl f5)] 'cscope-find-this-symbol)
+  (define-key global-map [(ctrl f6)] 'cscope-find-global-definition)
+  (define-key global-map [(ctrl f7)] 'cscope-find-global-definition-no-prompting)
+  (define-key global-map [(ctrl f8)] 'cscope-pop-mark)
+  (define-key global-map [(ctrl f9)] 'cscope-next-symbol)
+  (define-key global-map [(ctrl f10)] 'cscope-next-file)
+  (define-key global-map [(ctrl f11)] 'cscope-prev-symbol)
+  (define-key global-map [(ctrl f12)] 'cscope-prev-file)
+  (define-key global-map [(meta f9)] 'cscope-display-buffer)
+  (define-key global-map [(meta f10)] 'cscope-display-buffer-toggle))
+  ;(use-package mount-cygwin
 ;  :ensure t
 ;  :config)
 ;
