@@ -11,6 +11,7 @@ return require('packer').startup({function()
   use { 'shaunsingh/nord.nvim' }
   use { 'navarasu/onedark.nvim' }
   use { 'wuelnerdotexe/vim-enfocado' }
+  use { "tomasiser/vim-code-dark" }
 
   -- TrueZen.nvim is a Neovim plugin that aims to provide a cleaner and less cluttered interface
   -- when toggled in either of it's three different modes (Ataraxis, Minimalist and Focus).
@@ -62,7 +63,13 @@ return require('packer').startup({function()
       require('plugins/nvim-tree')
     end
   }
-
+  -- Undo Tree
+  use {
+      "mbbill/undotree",
+      cmd = {
+          "UndotreeToggle",
+      }
+  }
   -- Bufferline.
   use {
     'akinsho/nvim-bufferline.lua',
@@ -220,14 +227,6 @@ use {'p00f/nvim-ts-rainbow',
     end
   }
 
-  -- Auto closes.
-  use {
-    'windwp/nvim-autopairs',
-    event = 'BufRead',
-    config = function()
-      require('nvim-autopairs').setup{}
-    end
-  }
   -- This is for html and it can autorename too!
   use {
     'windwp/nvim-ts-autotag',
