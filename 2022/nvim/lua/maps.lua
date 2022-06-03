@@ -128,7 +128,6 @@ map("n", "<leader>cw", ":StripWhitespace<CR>")
 -- TrueZen focus mode.
 map("n", "<leader>fs", ":TZFocus<CR>")
 
-
 -- comment
 map("n", "gb", ":BlamerToggle<CR>")
 map("n", "<leader>ct", ":CommentToggle<CR>")

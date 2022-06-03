@@ -3,7 +3,6 @@ if not present then
   return
 end
 
-require("../user_settings")
 local lualine_style = 1
 if user_lualine_style then
     lualine_style = user_lualine_style

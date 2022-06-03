@@ -12,6 +12,8 @@ opt.scrolloff = 8
 -- Remove showing mode.
 opt.showmode = false
 
+opt.wrap = false
+
 -- True collor support.
 opt.termguicolors = true
 

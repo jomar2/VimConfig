@@ -1,6 +1,5 @@
 -- indent-blankline character.
 
-require("../user_settings")
 local indent_blankline_style = 1
 if user_indent_blankline_style then
     indent_blankline_style = user_indent_blankline_style
