@@ -25,11 +25,15 @@ telescope.setup {
         },
     },
     defaults = {
+        file_ignore_patterns = {"%.idx","%.o", "%.cpp.o"},
+        sorting_strategy = "ascending",
+        path_display = {"smart"},
+        scroll_strategy = "limit",
         layout_config = {
-            prompt_position = 'top',
+            prompt_position = "top",
         },
-        git_files = {
-            show_untracked = false,
+        preview = {
+            hide_on_startup=true,
         },
     },
 }

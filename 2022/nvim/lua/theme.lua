@@ -10,13 +10,14 @@ sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInfo
 sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=
 ]]
 
-vim.g.tokyonight_style = "night" -- styles: storm, night and day.
-vim.g.onedark_style = "deep"     -- styles: dark, darker, cool, deep, warm and warmer.
-vim.g.enfocado_style = "nature"    -- styles: nature and neon.
-vim.g.codedark_transparent = true
-
-vim.cmd("colorscheme codedark")
-vim.g.airlinetheme = "codedark"
+--vim.g.tokyonight_style = "night" -- styles: storm, night and day.
+--vim.g.onedark_style = "deep"     -- styles: dark, darker, cool, deep, warm and warmer.
+--vim.g.enfocado_style = "nature"    -- styles: nature and neon.
+-- vim.g.codedark_transparent = true
+vim.g.vscode_transparent = 1
+vim.g.vscode_style = "dark"
+vim.cmd("colorscheme vscode")
+-- vim.g.airlinetheme = "codedark"
 
 function _G.make_codeart_transparent()
   vim.cmd("highlight Normal guibg=NONE guifg=NONE")

@@ -42,6 +42,7 @@ map("n", "<leader>bh", "::BufferLineMovePrev<CR>")
 
 -- NvimTree toggle
 map("n", "<leader>nt", ":NvimTreeToggle<CR>")
+map("n", "<leader>nn", ":NvimTreeFindFileToggle<CR>")
 
 
 -- Telescope.
@@ -49,6 +50,8 @@ map("n", "<Leader>fw", ":Telescope live_grep<CR>")
 map("n", "<Leader>gt", ":Telescope git_status<CR>")
 map("n", "<Leader>cm", ":Telescope git_commits<CR>")
 map("n", "<Leader>ff", ":Telescope find_files find_command=rg,--follow,--hidden,--files<CR>")
+map("n", "<Leader>fd", ":Telescope find_directories<CR>")
+map("n", "<Leader>fp", ":Telescope media_files<CR>")
 map("n", "<Leader>fb", ":Telescope buffers<CR>")
 map("n", "<Leader>fh", ":Telescope help_tags<CR>")
 map("n", "<Leader>fo", ":Telescope oldfiles<CR>")
@@ -62,7 +65,7 @@ map("n", "<leader>pb",":lua require('telescope.builtin').buffers()<CR>")
 map("i", "<C-p>", "<esc>:lua require('telescope.builtin').git_files()<CR>")
 map("n", "<C-p>", ":lua require('telescope.builtin').git_files()<CR>")
 map("v", "<C-p>", "<esc>:lua require('telescope.builtin').git_files()<CR>")
-
+map("n","<C-l>",":Telescope <CR>")
 
 -- Dashboard
 map("n", "<Leader>db", ":Dashboard<CR>")
@@ -85,6 +88,7 @@ map("n", "<leader>ö", ":lua require('harpoon.ui').nav_file(4)<CR>",silent_opts)
 
 -- Lsp
 local lsp_opts = { noremap=true, silent=true }
+map("n", "go", ":ClangdSwitchSourceHeader<CR>", lsp_opts)
 map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", lsp_opts)
 map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", lsp_opts)
 map("n", "<leader>k", ":lua vim.lsp.buf.hover()<CR>", lsp_opts)
@@ -101,22 +105,6 @@ map("n", "<leader>e", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", lsp
 map("n", "[d", ":lua vim.lsp.diagnostic.goto_prev()<CR>", lsp_opts)
 map("n", "]d", ":lua vim.lsp.diagnostic.goto_next()<CR>", lsp_opts)
 map("n", "<leader>q", ":lua vim.lsp.diagnostic.set_loclist()<CR>", lsp_opts)
-
-
--- -- Dap
--- map("n", "<F5>", ":lua require(\"dap\").continue()<CR>")
--- map("n", "<leader>te", ":lua require(\"dap\").terminate()<CR>")
--- map("n", "<leader>br", ":lua require(\"dap\").toggle_breakpoint()<CR>")
--- map("n", "<leader>Br", ":lua require(\"dap\").set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
--- map("n", "<leader>lp", ":lua require(\"dap\").set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
--- map("n", "<F10>", ":lua require(\"dap\").step_over()<CR>")
--- map("n", "<F11>", ":lua require(\"dap\").step_into()<CR>")
--- map("n", "<leader>sb", ":lua require(\"dap\").step_back()<CR>")
--- map("n", "<F12>", ":lua require(\"dap\").step_out()<CR>")
--- map("n", "<leader>rc", ":lua require(\"dap\").run_to_cursor()<CR>")
--- map("n", "<leader>ro", ":lua require(\"dap\").repl.open()<CR>")
--- map("n", "<leader>dt", ":lua require(\"dapui\").toggle()<CR>")
--- map("n", "<leader>dl", ":lua require(\"dap\").run_last()<CR>")
 
 
 function _G.set_terminal_keymaps()
@@ -142,6 +130,7 @@ map("n", "<leader>fs", ":TZFocus<CR>")
 
 
 -- comment
+map("n", "gb", ":BlamerToggle<CR>")
 map("n", "<leader>ct", ":CommentToggle<CR>")
 map("v", "<leader>ct", ":'<,'>CommentToggle<CR>")
 
@@ -174,17 +163,8 @@ map("n","Q","<nop>")
 vim.cmd("com! W w")
 vim.cmd("com! Q q")
 
-map("n","<leader>u",":UndotreeShow<CR>")
+map("n","<leader>u",":UndotreeToggle<CR>")
 vim.cmd("autocmd! FileType help wincmd L")
---
--- imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
--- inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
---
--- snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
--- snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
---
--- imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
--- smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 
 -- Code formatter.
 -- map("n", "<leader>fr", ":Neoformat<CR>", lsp_opts)

@@ -17,13 +17,19 @@ nvim_treesitter.setup {
   autotag = {
     enable = true
   },
-  cpp_tools = {
-      enable = true,
-      preview = {
-          quit = 'q', -- optional keymapping for quit preview
-          accept = '<tab>' -- optional keymapping for accept preview
-      },
+  context = {
+    enable = true
   },
+  rainbow = {
+    enable = true,
+    colors = {
+        "#fff200",
+        "#ff79c6",
+        "#0099ff"
+    }
+  }
+
+
 }
 
 vim.cmd

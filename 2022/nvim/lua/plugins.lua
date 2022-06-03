@@ -12,7 +12,22 @@ return require("packer").startup({function()
     use { "navarasu/onedark.nvim" }
     use { "wuelnerdotexe/vim-enfocado" }
     use { "tomasiser/vim-code-dark" }
-
+    use {
+        "Mofiqul/vscode.nvim",
+    --     config = function ()
+    --         -- For dark theme
+    --         vim.g.vscode_style = "dark"
+    --         -- For light theme
+    --         vim.g.vscode_style = "light"
+    --         -- Enable transparent background
+    --         vim.g.vscode_transparent = 1
+    --         -- Enable italic comment
+    --         vim.g.vscode_italic_comment = 1
+    --         -- Disable nvim-tree background color
+    --         vim.g.vscode_disable_nvimtree_bg = true
+    --         vim.cmd([[colorscheme vscode]])
+    --     end
+    }
     -- vim game
     use {"theprimeagen/vim-with-me"}
     use {"ellisonleao/glow.nvim", branch = 'main'}
@@ -33,7 +48,6 @@ return require("packer").startup({function()
     --        vim.cmd(":!cargo install --locked code-minimap")
     --     end
     -- }
-    -- -- This plugin adds indentation guides to all lines (including empty lines).
 
     use {
         "ThePrimeagen/harpoon",
@@ -44,6 +58,16 @@ return require("packer").startup({function()
             }
         end
     }
+    -- GitLens functionality
+    use {
+        "APZelos/blamer.nvim",
+        cmd = {"BlamerToggle"},
+    config = function()
+            --require('blamer').setup{}
+            require("plugins/blamer")
+        end
+    }
+    -- -- This plugin adds indentation guides to all lines (including empty lines).
     use {
         "lukas-reineke/indent-blankline.nvim",
         event = "BufEnter",
@@ -52,6 +76,18 @@ return require("packer").startup({function()
         end
     }
 
+    use {
+        "RishabhRD/nvim-cheat.sh",
+        cmd = {
+            "Cheat",
+            "CheatWithoutComments",
+            "CheatList",
+            "CheatListWithoutComments",
+        },
+        requires = {
+            'RishabhRD/popfix',
+        },
+    }
     -- This plugin show trailing whitespace.
     use {
         "ntpeters/vim-better-whitespace",
@@ -60,34 +96,88 @@ return require("packer").startup({function()
             require("plugins/better-whitespace")
         end
     }
-
+    -- Sandwich surround plugin
+    use {
+        "machakann/vim-sandwich",
+        event = "BufRead",
+    }
     -- Icons.
     use {
         "kyazdani42/nvim-web-devicons",
         event = "BufEnter"
     }
-    -- -- Refactoring
-    -- use {
-    --     "Badhi/nvim-treesitter-cpp-tools",
-    --     requires = {"nvim-treesitter/nvim-treesitter"}
-    -- }
+    -- treesitter context.
+    use {
+        "lewis6991/nvim-treesitter-context",
+        cmd = {
+            "TSContextToggle",
+            "TSContextEnable",
+            "TSContextDisable",
+        },
+        config = function()
+            require'treesitter-context'.setup{
+                enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+                throttle = true, -- Throttles plugin updates (may improve performance)
+                max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+                patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+                -- For all filetypes
+                -- Note that setting an entry here replaces all other patterns for this entry.
+                -- By setting the 'default' entry below, you can control which nodes you want to
+                -- appear in the context window.
+                default = {
+                    'class',
+                    'function',
+                    'method',
+                    -- 'for', -- These won't appear in the context
+                    -- 'while',
+                    -- 'if',
+                    -- 'switch',
+                    -- 'case',
+                },
+                -- Example for a specific filetype.
+                    -- If a pattern is missing, *open a PR* so everyone can benefit.
+                    --   rust = {
+                    --       'impl_item',
+                    --   },
+                },
+                exact_patterns = {
+                    -- Example for a specific filetype with Lua patterns
+                    -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
+                    -- exactly match "impl_item" only)
+                    -- rust = true,
+                },
+            }
+        end
+    }
+
+
+
+
     -- File explorer tree.
     use {
         "kyazdani42/nvim-tree.lua",
+        event = "BufEnter",
         cmd = {
             "NvimTreeOpen",
             "NvimTreeFocus",
             "NvimTreeToggle",
         },
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
         config = function()
-            require("plugins/nvim-tree")
+            require'nvim-tree'.setup {}
         end
     }
     -- Undo Tree
     use {
         "mbbill/undotree",
         cmd = {
+            "UndotreeShow",
+            "UndotreeFocus",
             "UndotreeToggle",
+            "UndotreeHide",
+
         }
     }
     -- Bufferline.
@@ -170,7 +260,6 @@ return require("packer").startup({function()
     use {
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "make",
-        cmd = "Telescope"
     }
     use {
         "artart222/telescope_find_directories",
@@ -186,13 +275,12 @@ return require("packer").startup({function()
     -- LSP, LSP installer and tab completion.
     use {
         "neovim/nvim-lspconfig",
-        event = "BufEnter"
     }
     use {
         "williamboman/nvim-lsp-installer",
         after = "nvim-lspconfig",
         config = function()
-            require("lsp")
+            require("../lsp")
         end
     }
     use {
@@ -246,19 +334,6 @@ return require("packer").startup({function()
         after = "friendly-snippets"
     }
 
-    -- use { "mfussenegger/nvim-dap" }
-    -- use {
-    --     "Pocco81/DAPInstall.nvim",
-    --     config = function ()
-    --         require("plugins/dap")
-    --     end
-    -- }
-    -- use {
-    --     "rcarriga/nvim-dap-ui",
-    --     config = function ()
-    --         require("plugins/dap")
-    --     end
-    -- }
 
     -- Code formatter.
     use {
