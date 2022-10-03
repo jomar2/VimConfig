@@ -58,13 +58,3 @@ nvimtree.setup {
   }
 }
 
--- NvimTree] Following options were moved to setup
--- see bit.ly/3vIpEOJ: 
--- nvim_tree_quit_on_open
--- nvim_tree_indent_markers
--- nvim_tree_hide_dotfiles
--- nvim_tree_git_hl
--- nvim_tree_highlight_opened_files
--- nvim_tree_add_trailing
--- nvim_tree_window_picker_exclude
--- nvim_tree_ignore

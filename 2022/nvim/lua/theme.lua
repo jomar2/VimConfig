@@ -94,6 +94,7 @@ function _G.make_codeart_transparent()
   vim.cmd("highlight DiagnosticVirtualTextWarn guibg=NONE")
   vim.cmd("highlight DiagnosticVirtualTextHint guibg=NONE")
   vim.cmd("highlight DiagnosticVirtualTextInfo guibg=NONE")
+  vim.cmd("highlight dashboardHeader guifg=114")
 
   vim.cmd("highlight NormalFloat guibg=NONE")
   vim.cmd("highlight FloatBorder guibg=#NONE")

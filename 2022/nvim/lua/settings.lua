@@ -65,7 +65,7 @@ opt.ruler = true
 -- Setting time that Neovim wait after each keystroke.
 opt.ttimeoutlen = 20
 opt.timeoutlen = 1000
-
+opt.updatetime = 50
 -- Setting up autocomplete menu.
 opt.completeopt = "menuone,noselect"
 
@@ -107,6 +107,9 @@ augroup END
 
 
 vim.cmd("autocmd BufWritePost plugins.lua source <afile>")
-
-
 vim.cmd("command CodeArtTransparent lua make_codeart_transparent()")
+
+-- Custom settings
+user_lualine_style = 1 -- You can choose between 1, 2, 3, 4 and 5
+user_indent_blankline_style = 1 -- You can choose between 1, 2, 3, 4,5 and 6
+
