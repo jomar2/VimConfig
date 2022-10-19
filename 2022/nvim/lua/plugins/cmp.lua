@@ -13,6 +13,10 @@ cmp.setup {
     formatting = {
         format = lspkind.cmp_format({ with_text = true, maxwidth = 50 })
     },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
     mapping = {
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),

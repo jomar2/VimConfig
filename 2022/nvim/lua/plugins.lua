@@ -11,21 +11,25 @@ return require("packer").startup({function()
     use { "navarasu/onedark.nvim" }
     use { "wuelnerdotexe/vim-enfocado" }
     use { "tomasiser/vim-code-dark" }
+    use { "NLKNguyen/papercolor-theme" }
+    use { "getomni/neovim" }
+    use { "jdsimcoe/hyper.vim"}
+    use { "humanoid-colors/vim-humanoid-colorscheme"}
     use {
         "Mofiqul/vscode.nvim",
-        --     config = function ()
-        --         -- For dark theme
-        --         vim.g.vscode_style = "dark"
-        --         -- For light theme
-        --         vim.g.vscode_style = "light"
-        --         -- Enable transparent background
-        --         vim.g.vscode_transparent = 1
-        --         -- Enable italic comment
-        --         vim.g.vscode_italic_comment = 1
-        --         -- Disable nvim-tree background color
-        --         vim.g.vscode_disable_nvimtree_bg = true
-        --         vim.cmd([[colorscheme vscode]])
-        --     end
+        -- config = function ()
+        --     -- For dark theme
+        --     vim.g.vscode_style = "dark"
+        --     -- -- For light theme
+        --     -- vim.g.vscode_style = "light"
+        --     -- Enable transparent background
+        --     vim.g.vscode_transparent = 1
+        --     -- Enable italic comment
+        --     vim.g.vscode_italic_comment = 1
+        --     -- Disable nvim-tree background color
+        --     vim.g.vscode_disable_nvimtree_bg = true
+        --     vim.cmd([[colorscheme vscode]])
+        -- end
     }
     -- vim game
     use {"theprimeagen/vim-be-good"}
@@ -180,13 +184,13 @@ use {
     }
 }
 -- Bufferline.
-use {
-    "akinsho/nvim-bufferline.lua",
-    after = "nvim-web-devicons",
-    config  = function()
-        require("plugins/bufferline")
-    end
-}
+-- use {
+--     "akinsho/nvim-bufferline.lua",
+--     after = "nvim-web-devicons",
+--     config  = function()
+--         require("plugins/bufferline")
+--     end
+-- }
 
 -- -- MultiCursors
 -- use {
@@ -196,7 +200,7 @@ use {
 -- Statusline.
 use {
     "nvim-lualine/lualine.nvim",
-    after = "nvim-bufferline.lua",
+    -- after = "nvim-bufferline.lua",
     config = function ()
         require("plugins/lualine")
     end
@@ -293,6 +297,11 @@ use {
         require("../lsp")
     end
 }
+
+use {
+    "simrat39/rust-tools.nvim",
+}
+
 use {
     "p00f/nvim-ts-rainbow",
     after = "nvim-treesitter"
@@ -333,7 +342,15 @@ use {
     "ray-x/lsp_signature.nvim",
     after = "friendly-snippets",
     config = function ()
-        require("lsp_signature").setup()
+        require("lsp_signature").setup({
+            bind = true, -- This is mandatory, otherwise border config won't get registered.
+            handler_opts = {
+                border = "rounded"
+            },
+            hint_enable = true, -- virtual hint enable
+            transparency = 10, -- disabled by default, allow floating win transparent value 1~100
+
+        })
     end
 }
 
