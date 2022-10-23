@@ -98,7 +98,11 @@ require('vscode').setup({
         -- keyword = { fg = c.vscBlue, bg = 'NONE' },
         -- Comment = { fg = c.vscBlue, bg = 'NONE'},
         LineNr = { fg = c.vscLineNumber, bg = 'NONE' },
-    },
+        Whitespace = { fg = "#404040", bg = 'NONE' },
+        IndentBlanklineContextChar = { fg = "#FF4040", bg = 'NONE' },
+        IndentBlanklineContextSpaceChar = { fg = "#404040", bg = 'NONE' },
+        IndentBlanklineChar = { fg = "#404040", bg = 'NONE' },
+    }
 })
 
 require('lualine').setup({
