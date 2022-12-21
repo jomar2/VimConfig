@@ -1,0 +1,37 @@
+  local home = os.getenv('HOME')
+  local g = vim.g
+  -- macos
+  -- g.dashboard_preview_command = 'cat | lolcat -F 0.3'
+  -- g.dashboard_preview_file_path = home .. '/.config/nvim/dash.txt'
+  -- g.dashboard_preview_file_height = 11
+  -- g.dashboard_preview_file_width = 70
+-- g.dashboard_custom_header  -- type can be nil,table or function(must be return table in function)
+                  -- if not config will use default banner
+-- g.dashboard_custom_center  -- table type and in this table you can set icon,desc,shortcut,action keywords. desc must be exist and type is string
+                  -- icon type is nil or string
+                  -- icon_hl table type { fg ,bg} see `:h vim.api.nvim_set_hl` opts
+                  -- shortcut type is nil or string also like icon
+                  -- action type can be string or function or nil.
+                  -- if you don't need any one of icon shortcut action ,you can ignore it.
+-- g.dashboard_custom_footer  -- type can be nil,table or function(must be return table in function)
+-- g.dashboard_preview_file_Path    -- string or function type that mean in function you can dynamic generate height width
+-- g.dashboard_preview_file_height  -- number type
+-- g.dashboard_preview_file_width   -- number type
+-- g.dashboard_preview_command      -- string type (can be ueberzug which only work in linux)
+-- g.dashboard_confirm_key          -- string type key that do confirm in center select
+-- g.dashboard_hide_statusline      -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
+-- g.dashboard_hide_tabline         -- boolean default is true.it will hide tabline in dashboard buffer and auto open in other buffer
+-- g.dashboard_session_directory    -- string type the directory to store the session file
+-- g.dashboard_header_pad           -- number type default is 1
+-- g.dashboard_center_pad           -- number type default is 1
+-- g.dashboard_footer_pad           -- number type default is 1
+
+-- -- example of -- g.dashboard_custom_center for new lua coder,the value of nil mean if you
+-- -- don't need this filed you can not write it
+-- g.dashboard_custom_center = {
+--     nil
+-- --   {icon_hl={fg="color_code"},icon ="some icon",desc="some desc"}, --correct
+-- --   { icon = 'some icon' desc = 'some description here' }, --correct if you don't action filed
+-- --   { desc = 'some description here' },                    --correct if you don't action and icon filed
+-- --   { desc = 'some description here' action = 'Telescope find files'} --correct if you don't icon filed
+-- }

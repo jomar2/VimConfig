@@ -5,13 +5,13 @@ if user_indent_blankline_style then
     indent_blankline_style = user_indent_blankline_style
 end
 vim.opt.list = true
-vim.opt.listchars:append "space:⋅"
+-- vim.opt.listchars:append "space:⋅"
 -- vim.opt.listchars:append "eol:↴"
 
 require("indent_blankline").setup {
-    space_char_blankline = " ",
+    -- space_char_blankline = " ",
     show_current_context = true,
-    show_current_context_start = true,
+    show_current_context_start = false,
 }
 indent_blankline_styles = {
     "▏",
@@ -43,7 +43,7 @@ vim.g.indent_blankline_show_first_indent_level = true
 --
 -- --
 vim.opt.termguicolors = true
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]

@@ -44,7 +44,7 @@ opt.expandtab = true
 opt.smarttab = true
 
 -- Set searching stuf.
-opt.hlsearch = false
+opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
 
